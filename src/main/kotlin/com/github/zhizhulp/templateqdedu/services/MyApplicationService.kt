@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.zhizhulp.templateqdedu.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.zhizhulp.templateqdedu.MyBundle
 
 class MyApplicationService {
 
