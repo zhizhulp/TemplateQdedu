@@ -17,7 +17,6 @@ import java.io.File
 
 fun RecipeExecutor.apiRecipe(
         moduleData: ModuleTemplateData,
-        packageName: String,
         groupName: String,
         apiName: String,
         apiUrl: String,
@@ -25,22 +24,98 @@ fun RecipeExecutor.apiRecipe(
         remarkName: String
 ) {
     val (projectData, srcOut, resOut, manifestOut) = moduleData
-    addOrMergeApiMethod(srcOut,apiName, apiUrl, remarkName,this)
+    val packageName = moduleData.packageName
+    addOrMergeApiMethod(srcOut,packageName, apiName, apiUrl, remarkName, this)
+    save(paramsKt(packageName, apiName, remarkName), srcOut.resolve("data/model/params/${apiName}Params.kt"))
+    save(responseKt(packageName, apiName, remarkName), srcOut.resolve("data/model/responses/${apiName}Response.kt"))
+    addOrMergeApiService(srcOut,packageName, apiName, remarkName, isGetMethod,this)
+    save(appServiceKt(packageName), srcOut.resolve("data/source/AppService.kt"))
 
+    addOrMergeDataSource(srcOut,remarkName, apiName, packageName, groupName,this)
+    addOrMergeDataSourceLocal(srcOut,remarkName, apiName, packageName, groupName,this)
+    addOrMergeDataSourceRemote(srcOut,remarkName, apiName, packageName, groupName,this)
+    addOrMergeRepository(srcOut,remarkName, apiName, packageName, groupName,this)
 
-    save(apiServiceKt(packageName,apiName,remarkName,isGetMethod),srcOut.resolve("data/service/ApiService.kt"))
-    save(appServiceKt(),srcOut.resolve("data/service/AppService.kt"))
-    save(dataSourceKt(remarkName,apiName,packageName,groupName),srcOut.resolve("data/source/${groupName}DataSource.kt"))
-    save(localDataSourceKt(groupName),srcOut.resolve("data/source/local/${groupName}LocalDataSource.kt"))
-    save(remoteDataSourceKt(groupName),srcOut.resolve("data/source/remote/${groupName}RemoteDataSource.kt"))
-    save(paramsKt(remarkName,groupName),srcOut.resolve("data/model/params/${groupName}Params.kt"))
-    save(responseKt(groupName),srcOut.resolve("data/model/responses/${groupName}Response.kt"))
-    save(repositoryKt(groupName),srcOut.resolve("data/source/${groupName}Repository.kt"))
 }
 
-fun addOrMergeApiMethod(srcOut: File, apiName: String, apiUrl: String, remarkName: String, recipeExecutor: RecipeExecutor) {
+fun addOrMergeRepository(srcOut: File, remarkName: String, apiName: String, packageName: String, groupName: String, recipeExecutor: RecipeExecutor) {
+    val outFile = srcOut.resolve("data/source/${groupName}Repository.kt")
+    val newDataString = repositoryKt(remarkName, apiName, packageName, groupName)
+    if (outFile.exists()) {
+        val originString = AttachmentStore.loadAsString(outFile.absolutePath)
+        if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
+            return
+        }
+        val finalString = transformData(originString, newDataString)
+        AttachmentStore.save(outFile.absolutePath, finalString)
+    } else {
+        recipeExecutor.save(newDataString, outFile)
+    }
+}
+
+fun addOrMergeDataSourceRemote(srcOut: File, remarkName: String, apiName: String, packageName: String, groupName: String, recipeExecutor: RecipeExecutor) {
+    val outFile = srcOut.resolve("data/source/remote/${groupName}RemoteDataSource.kt")
+    val newDataString = remoteDataSourceKt(remarkName, apiName, packageName, groupName)
+    if (outFile.exists()) {
+        val originString = AttachmentStore.loadAsString(outFile.absolutePath)
+        if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
+            return
+        }
+        val finalString = transformData(originString, newDataString)
+        AttachmentStore.save(outFile.absolutePath, finalString)
+    } else {
+        recipeExecutor.save(newDataString, outFile)
+    }
+}
+
+fun addOrMergeDataSourceLocal(srcOut: File, remarkName: String, apiName: String, packageName: String, groupName: String, recipeExecutor: RecipeExecutor) {
+    val outFile = srcOut.resolve("data/source/local/${groupName}LocalDataSource.kt")
+    val newDataString = localDataSourceKt(remarkName, apiName, packageName, groupName)
+    if (outFile.exists()) {
+        val originString = AttachmentStore.loadAsString(outFile.absolutePath)
+        if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
+            return
+        }
+        val finalString = transformData(originString, newDataString)
+        AttachmentStore.save(outFile.absolutePath, finalString)
+    } else {
+        recipeExecutor.save(newDataString, outFile)
+    }
+}
+
+fun addOrMergeDataSource(srcOut: File, remarkName: String, apiName: String, packageName: String, groupName: String, recipeExecutor: RecipeExecutor) {
+    val outFile = srcOut.resolve("data/source/${groupName}DataSource.kt")
+    val newDataString = dataSourceKt(remarkName, apiName, packageName, groupName)
+    if (outFile.exists()) {
+        val originString = AttachmentStore.loadAsString(outFile.absolutePath)
+        if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
+            return
+        }
+        val finalString = transformData(originString, newDataString)
+        AttachmentStore.save(outFile.absolutePath, finalString)
+    } else {
+        recipeExecutor.save(newDataString, outFile)
+    }
+}
+
+fun addOrMergeApiService(srcOut: File, packageName: String, apiName: String, remarkName: String, isGetMethod: Boolean, recipeExecutor: RecipeExecutor) {
+    val outFile = srcOut.resolve("data/service/ApiService.kt")
+    val newDataString = apiServiceKt(packageName, apiName, remarkName, isGetMethod)
+    if (outFile.exists()) {
+        val originString = AttachmentStore.loadAsString(outFile.absolutePath)
+        if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
+            return
+        }
+        val finalString = transformData(originString, newDataString)
+        AttachmentStore.save(outFile.absolutePath, finalString)
+    } else {
+        recipeExecutor.save(newDataString, outFile)
+    }
+}
+
+fun addOrMergeApiMethod(srcOut: File, packageName: String, apiName: String, apiUrl: String, remarkName: String, recipeExecutor: RecipeExecutor) {
     val outFileApiMethods = srcOut.resolve("data/service/ApiMethods.kt")
-    val newDataString = apiMethodsKt(apiName, apiUrl, remarkName)
+    val newDataString = apiMethodsKt(packageName, apiName, apiUrl, remarkName)
     if (outFileApiMethods.exists()) {
         val originString = AttachmentStore.loadAsString(outFileApiMethods.absolutePath)
         if (originString.contains(apiName) && originString.contains(apiUrl) && originString.contains(remarkName)) {//此方法会多次执行

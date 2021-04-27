@@ -1,18 +1,23 @@
 package api.src.app_package.data.model.responses
 
+import java.text.DateFormat
+import java.util.*
+
 fun responseKt(
-        sourceName: String,
+        packageName: String,
+        apiName: String,
+        remark: String
 ) = """
-package com.qdedu.homework.data.model.responses
+package $packageName.data.model.responses
 import com.squareup.moshi.JsonClass
 
 /**
- * 自动生成：by WaTaNaBe on 2021-04-08 16:07.
- * postHolidayWork
- */
-class ${sourceName}Response {
+ * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+ * $apiName
+ * #$remark#
+*/
+@JsonClass(generateAdapter=true)
+class ${apiName}Response {
 
-   
 }
-
 """

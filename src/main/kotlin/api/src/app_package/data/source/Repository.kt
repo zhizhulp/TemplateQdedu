@@ -1,43 +1,45 @@
 package api.src.app_package.data.source
 
-
+import java.text.DateFormat
+import java.util.*
 
 
 fun repositoryKt(
-        sourceName: String,
+        remark:String,
+        apiName: String,
+        packageName: String,
+        groupName: String
 ) = """
-package com.qdedu.homework.data.source.local
+package $packageName.data.source
 
-import com.kangraoo.basektlib.data.DataResult
-import com.kangraoo.basektlib.data.source.local.BaseLocalDataSource
-import com.qdedu.homework.data.source.HomeWorkDataSource
-import com.qdedu.homework.data.model.params.*
-import com.qdedu.homework.data.model.responses.*
-import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
-import com.qdedu.homework.data.model.entity.BatchSearchModel
-import com.qdedu.homework.data.model.entity.FeedBackQuestionEntity
+import com.kangraoo.basektlib.data.source.BaseRepository
+import $packageName.data.source.local.*
+import $packageName.data.source.remote.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import $packageName.data.model.params.*
+import $packageName.data.model.responses.*
 
 /**
- * 自动生成：by WaTaNaBe on 2021-03-11 09:29.
- * HomeWorkLocalDataSource
+ * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
+ * ${groupName}Repository
  */
-public class ${sourceName}Repo internal constructor(
-     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : BaseRemoteDataSource(), HomeWorkDataSource {
+class ${groupName}Repository : BaseRepository<${groupName}LocalDataSource,${groupName}RemoteDataSource>(${groupName}LocalDataSource(),${groupName}RemoteDataSource()),${groupName}DataSource {
 
-
-    /**
-     * 自动生成：by WaTaNaBe on 2021-03-11 09:29.
-     * #studentWorkTaskList#
-     * #作业模块通用接口，通过moduleTpye指定类型：7闪测评  10作业#
-     */
-    override suspend fun studentWorkTaskList(param: StudentWorkTaskListParams): DataResult<BasicApiResult<StudentWorkTaskListResponse>> {
-        TODO("Not yet implemented")
+    companion object{
+        val instance: ${groupName}Repository by lazy {
+            ${groupName}Repository()
+        }
     }
+    val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
-//#06#
+     /**
+     * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+     * #$apiName#
+     * #$remark#
+     */
+    override suspend fun  $apiName(param: ${apiName}Params) = remoteDataSource.${apiName}(param)
+    
 }
 
 """

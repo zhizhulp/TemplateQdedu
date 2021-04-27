@@ -1,6 +1,7 @@
 package api
 
 import com.android.tools.idea.wizard.template.*
+import com.android.tools.idea.wizard.template.impl.defaultPackageNameParameter
 import java.io.File
 
 val apiTemplate
@@ -14,12 +15,12 @@ val apiTemplate
      formFactor = FormFactor.Mobile
      screens = listOf(WizardUiContext.ActivityGallery, WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
 
-     val packageName = stringParameter {
+     /*val packageName = stringParameter {
          name = "Root Package Name"
-         default = "com.mycompany.myapp"
+         default = defaultPackageNameParameter.defaultValue
          constraints = listOf(Constraint.PACKAGE)
          help = "请填写你的项目包名,请认真核实此包名是否是正确的项目包名,不能包含子包,正确的格式如:me.jessyan.arms"
-     }
+     }*/
      val groupName= stringParameter {
          name = "Group Name"
          default = "Homework"
@@ -55,7 +56,7 @@ val apiTemplate
      }
      thumb { File("template_blank_activity.png") }
      widgets(
-             TextFieldWidget(packageName),
+             //TextFieldWidget(packageName),
              TextFieldWidget(groupName),
              TextFieldWidget(apiName),
              TextFieldWidget(apiUrl),
@@ -66,7 +67,7 @@ val apiTemplate
      recipe = { data: TemplateData ->
          apiRecipe(
                  data as ModuleTemplateData,
-                 packageName.value,
+                // packageName.value,
                  groupName.value,
                  apiName.value,
                  apiUrl.value,

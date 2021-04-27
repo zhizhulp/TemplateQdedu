@@ -27,6 +27,5 @@ interface ApiService {
     ${if(methodIsGet) "@GET(ApiMethods.$apiName)" else "@POST(ApiMethods.$apiName)"}
     suspend fun ${apiName}Async(${if(methodIsGet) "@QueryMap params: Map<String, String>" else "@Body params: ${apiName}Params"}): Response<BasicApiResult<${apiName}Response>>
 
-//#06#
 }
 """

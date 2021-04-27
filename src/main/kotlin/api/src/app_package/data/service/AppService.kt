@@ -2,11 +2,12 @@ package api.src.app_package.data.service
 
 
 fun appServiceKt(
+        packageName:String
 ) = """
-package com.qdedu.homework.data.source
+package $packageName.data.source
 
 import com.qdedu.baselibcommon.data.source.ApiSource
-import com.qdedu.homework.data.service.ApiService
+import $packageName.data.service.ApiService
 
 object AppService {
 

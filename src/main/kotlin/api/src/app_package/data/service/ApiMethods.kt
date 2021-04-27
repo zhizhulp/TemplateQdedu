@@ -4,10 +4,13 @@ import java.text.DateFormat
 import java.util.*
 
 fun apiMethodsKt(
+        packageName:String,
         apiName:String,
         apiUrl:String,
         remark:String
 ) = """
+package $packageName.data.service
+    
 object ApiMethods {
 
     /**
@@ -15,7 +18,7 @@ object ApiMethods {
      * #$apiName#
      * #$remark#
      */
-    const val $apiName = $apiUrl
+    const val $apiName = "$apiUrl"
 
 }
 """

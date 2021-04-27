@@ -5,40 +5,37 @@ import java.text.DateFormat
 import java.util.*
 
 fun localDataSourceKt(
-        sourceName: String,
+        remark:String,
+        apiName: String,
+        packageName: String,
+        groupName: String
 ) = """
-package com.qdedu.homework.data.source.local
+package $packageName.data.source.local
 
 import com.kangraoo.basektlib.data.DataResult
 import com.kangraoo.basektlib.data.source.local.BaseLocalDataSource
-import com.qdedu.homework.data.source.HomeWorkDataSource
-import com.qdedu.homework.data.model.params.*
-import com.qdedu.homework.data.model.responses.*
+import $packageName.data.model.params.*
+import $packageName.data.model.responses.*
 import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
-import com.qdedu.homework.data.model.entity.BatchSearchModel
-import com.qdedu.homework.data.model.entity.FeedBackQuestionEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 /**
- * 自动生成：by WaTaNaBe on 2021-03-11 09:29.
- * HomeWorkLocalDataSource
+ * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
+ * ${groupName}LocalDataSource
  */
-public class ${sourceName}LocalDataSource internal constructor(
+public class ${groupName}LocalDataSource internal constructor(
      private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : BaseLocalDataSource(), HomeWorkDataSource {
+) : BaseLocalDataSource(), ${groupName}DataSource {
 
-
-    /**
-     * 自动生成：by WaTaNaBe on 2021-03-11 09:29.
-     * #studentWorkTaskList#
-     * #作业模块通用接口，通过moduleTpye指定类型：7闪测评  10作业#
+     /**
+     * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+     * #$apiName#
+     * #$remark#
      */
-    override suspend fun studentWorkTaskList(param: StudentWorkTaskListParams): DataResult<BasicApiResult<StudentWorkTaskListResponse>> {
+    override suspend fun $apiName(param: ${apiName}Params): DataResult<BasicApiResult<${apiName}Response>> {
         TODO("Not yet implemented")
     }
-
-//#06#
 }
 
 """

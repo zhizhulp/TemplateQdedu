@@ -4,12 +4,17 @@ import java.text.DateFormat
 import java.util.*
 
 fun dataSourceKt(
-        remark:String,
-        apiName:String,
+        remark: String,
+        apiName: String,
         packageName: String,
-        groupName:String
+        groupName: String
 ) = """
-import $packageName.data.source
+package $packageName.data.source
+import com.kangraoo.basektlib.data.DataResult
+import $packageName.data.model.params.*
+import $packageName.data.model.responses.*
+import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
+
 /**
  * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
  * ${groupName}DataSource

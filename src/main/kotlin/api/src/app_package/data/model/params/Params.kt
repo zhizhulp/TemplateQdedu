@@ -4,19 +4,20 @@ import java.text.DateFormat
 import java.util.*
 
 fun paramsKt(
-        pageRemark:String,
-        pageName: String
+        packageName:String,
+        apiName:String,
+        remark:String
 ) = """
 
+package $packageName.data.model.params
 import com.kangraoo.basektlib.data.model.BParam
 
 /**
  * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
- * $pageName
- * #${pageRemark}#
+ * $apiName
+ * #$remark#
 */
-
-class ${pageName}Params():BParam(){
+class ${apiName}Params():BParam(){
 
 }
 """
