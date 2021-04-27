@@ -80,6 +80,10 @@ tasks {
         jvmTarget = "1.8"
     }
 
+    runIde{
+        ideDirectory(properties("ideDirectory"))
+    }
+
     patchPluginXml {
         version(properties("pluginVersion"))
         sinceBuild(properties("pluginSinceBuild"))
