@@ -1,4 +1,4 @@
-package api
+package api.src.app_package.data.service
 
 import java.text.DateFormat
 import java.util.*
@@ -17,6 +17,5 @@ object ApiMethods {
      */
     const val $apiName = $apiUrl
 
-//#06#
 }
 """

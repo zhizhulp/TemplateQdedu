@@ -1,8 +1,9 @@
-package api.group
+package api
 
 import com.android.tools.idea.wizard.template.*
+import java.io.File
 
-val ApiTemplate
+val apiTemplate
  get() =template{
      revision = 1
      name = "ApiTemplate"
@@ -52,7 +53,7 @@ val ApiTemplate
          help = "remarkName Name"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
-
+     thumb { File("template_blank_activity.png") }
      widgets(
              TextFieldWidget(packageName),
              TextFieldWidget(groupName),

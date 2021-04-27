@@ -1,4 +1,4 @@
-package api
+package api.src.app_package.data.model.responses
 
 fun responseKt(
         sourceName: String,
