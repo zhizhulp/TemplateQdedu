@@ -1,4 +1,4 @@
-package api.src.app_package.data.service
+package template.api.src.app_package.data.service
 
 
 fun appServiceKt(

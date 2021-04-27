@@ -1,20 +1,20 @@
-package api.src.app_package.data.source.local
+package template.api.src.app_package.data.source.remote
 
 
 import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
-fun localDataSourceKt(
+fun remoteDataSourceKt(
         remark:String,
         apiName: String,
         packageName: String,
         groupName: String
 ) = """
-package $packageName.data.source.local
+package $packageName.data.source.remote
 
 import com.kangraoo.basektlib.data.DataResult
-import com.kangraoo.basektlib.data.source.local.BaseLocalDataSource
+import com.kangraoo.basektlib.data.source.remote.BaseRemoteDataSource
 import $packageName.data.source.${groupName}DataSource
 import $packageName.data.model.params.*
 import $packageName.data.model.responses.*
@@ -24,11 +24,11 @@ import kotlinx.coroutines.Dispatchers
 
 /**
  * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
- * ${groupName}LocalDataSource
+ * ${groupName}RemoteDataSource
  */
-public class ${groupName}LocalDataSource internal constructor(
+public class ${groupName}RemoteDataSource internal constructor(
      private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : BaseLocalDataSource(), ${groupName}DataSource {
+) : BaseRemoteDataSource(), ${groupName}DataSource {
 
      /**
      * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.

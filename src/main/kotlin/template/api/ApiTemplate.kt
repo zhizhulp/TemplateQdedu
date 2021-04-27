@@ -1,7 +1,6 @@
-package api
+package template.api
 
 import com.android.tools.idea.wizard.template.*
-import com.android.tools.idea.wizard.template.impl.defaultPackageNameParameter
 import java.io.File
 
 val apiTemplate
@@ -37,7 +36,7 @@ val apiTemplate
 
      val apiUrl= stringParameter {
          name = "Api Url"
-         default = "/api/user/student"
+         default = "/template/api/user/student"
          help = "Api Url"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }

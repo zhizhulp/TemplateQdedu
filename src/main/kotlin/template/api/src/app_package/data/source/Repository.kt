@@ -1,4 +1,4 @@
-package api.src.app_package.data.source
+package template.api.src.app_package.data.source
 
 import util.firstToUpperCase
 import java.text.DateFormat

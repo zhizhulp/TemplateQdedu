@@ -1,14 +1,14 @@
-package api
+package template.api
 
-import api.src.app_package.data.model.params.paramsKt
-import api.src.app_package.data.model.responses.responseKt
-import api.src.app_package.data.service.apiMethodsKt
-import api.src.app_package.data.service.apiServiceKt
-import api.src.app_package.data.service.appServiceKt
-import api.src.app_package.data.source.dataSourceKt
-import api.src.app_package.data.source.local.localDataSourceKt
-import api.src.app_package.data.source.remote.remoteDataSourceKt
-import api.src.app_package.data.source.repositoryKt
+import template.api.src.app_package.data.model.params.paramsKt
+import template.api.src.app_package.data.model.responses.responseKt
+import template.api.src.app_package.data.service.apiMethodsKt
+import template.api.src.app_package.data.service.apiServiceKt
+import template.api.src.app_package.data.service.appServiceKt
+import template.api.src.app_package.data.source.dataSourceKt
+import template.api.src.app_package.data.source.local.localDataSourceKt
+import template.api.src.app_package.data.source.remote.remoteDataSourceKt
+import template.api.src.app_package.data.source.repositoryKt
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import util.AttachmentStore
