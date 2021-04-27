@@ -1,6 +1,7 @@
 package api.src.app_package.data.source.remote
 
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -13,7 +14,8 @@ fun remoteDataSourceKt(
 package $packageName.data.source.remote
 
 import com.kangraoo.basektlib.data.DataResult
-import com.kangraoo.basektlib.data.source.remote.BaseLocalDataSource
+import com.kangraoo.basektlib.data.source.remote.BaseRemoteDataSource
+import $packageName.data.source.${groupName}DataSource
 import $packageName.data.model.params.*
 import $packageName.data.model.responses.*
 import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
@@ -22,7 +24,7 @@ import kotlinx.coroutines.Dispatchers
 
 /**
  * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
- * ${groupName}LocalDataSource
+ * ${groupName}RemoteDataSource
  */
 public class ${groupName}RemoteDataSource internal constructor(
      private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -33,7 +35,7 @@ public class ${groupName}RemoteDataSource internal constructor(
      * #$apiName#
      * #$remark#
      */
-    override suspend fun $apiName(param: ${apiName}Params): DataResult<BasicApiResult<${apiName}Response>> {
+    override suspend fun $apiName(param: ${apiName.firstToUpperCase()}Params): DataResult<BasicApiResult<${apiName.firstToUpperCase()}Response>> {
         TODO("Not yet implemented")
     }
 }

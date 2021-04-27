@@ -12,6 +12,7 @@ import api.src.app_package.data.source.repositoryKt
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import util.AttachmentStore
+import util.firstToUpperCase
 import java.io.File
 
 
@@ -26,8 +27,8 @@ fun RecipeExecutor.apiRecipe(
     val (projectData, srcOut, resOut, manifestOut) = moduleData
     val packageName = moduleData.packageName
     addOrMergeApiMethod(srcOut,packageName, apiName, apiUrl, remarkName, this)
-    save(paramsKt(packageName, apiName, remarkName), srcOut.resolve("data/model/params/${apiName}Params.kt"))
-    save(responseKt(packageName, apiName, remarkName), srcOut.resolve("data/model/responses/${apiName}Response.kt"))
+    save(paramsKt(packageName, apiName, remarkName), srcOut.resolve("data/model/params/${apiName.firstToUpperCase()}Params.kt"))
+    save(responseKt(packageName, apiName, remarkName), srcOut.resolve("data/model/responses/${apiName.firstToUpperCase()}Response.kt"))
     addOrMergeApiService(srcOut,packageName, apiName, remarkName, isGetMethod,this)
     save(appServiceKt(packageName), srcOut.resolve("data/source/AppService.kt"))
 

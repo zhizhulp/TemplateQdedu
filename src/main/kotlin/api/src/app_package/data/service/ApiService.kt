@@ -1,5 +1,6 @@
 package api.src.app_package.data.service
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -25,7 +26,7 @@ interface ApiService {
      * #$remark#
      */
     ${if(methodIsGet) "@GET(ApiMethods.$apiName)" else "@POST(ApiMethods.$apiName)"}
-    suspend fun ${apiName}Async(${if(methodIsGet) "@QueryMap params: Map<String, String>" else "@Body params: ${apiName}Params"}): Response<BasicApiResult<${apiName}Response>>
+    suspend fun ${apiName}Async(${if(methodIsGet) "@QueryMap params: Map<String, String>" else "@Body params: ${apiName.firstToUpperCase()}Params"}): Response<BasicApiResult<${apiName.firstToUpperCase()}Response>>
 
 }
 """

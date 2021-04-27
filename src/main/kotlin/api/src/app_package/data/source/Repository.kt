@@ -1,5 +1,6 @@
 package api.src.app_package.data.source
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -38,7 +39,7 @@ class ${groupName}Repository : BaseRepository<${groupName}LocalDataSource,${grou
      * #$apiName#
      * #$remark#
      */
-    override suspend fun  $apiName(param: ${apiName}Params) = remoteDataSource.${apiName}(param)
+    override suspend fun  $apiName(param: ${apiName.firstToUpperCase()}Params) = remoteDataSource.${apiName}(param)
     
 }
 

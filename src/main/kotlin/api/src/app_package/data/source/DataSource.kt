@@ -1,5 +1,6 @@
 package api.src.app_package.data.source
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -26,7 +27,7 @@ interface ${groupName}DataSource {
      * #$apiName#
      * #$remark#
      */
-    suspend fun ${apiName}( param: ${apiName}Params): DataResult<BasicApiResult<${apiName}Response>>
+    suspend fun ${apiName}( param: ${apiName.firstToUpperCase()}Params): DataResult<BasicApiResult<${apiName.firstToUpperCase()}Response>>
 
 //#06#
 }

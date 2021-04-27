@@ -1,5 +1,6 @@
 package api.src.app_package.data.model.params
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -17,7 +18,7 @@ import com.kangraoo.basektlib.data.model.BParam
  * $apiName
  * #$remark#
 */
-class ${apiName}Params():BParam(){
+class ${apiName.firstToUpperCase()}Params():BParam(){
 
 }
 """

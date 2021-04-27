@@ -1,6 +1,7 @@
 package api.src.app_package.data.source.local
 
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -14,6 +15,7 @@ package $packageName.data.source.local
 
 import com.kangraoo.basektlib.data.DataResult
 import com.kangraoo.basektlib.data.source.local.BaseLocalDataSource
+import $packageName.data.source.${groupName}DataSource
 import $packageName.data.model.params.*
 import $packageName.data.model.responses.*
 import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
@@ -33,7 +35,7 @@ public class ${groupName}LocalDataSource internal constructor(
      * #$apiName#
      * #$remark#
      */
-    override suspend fun $apiName(param: ${apiName}Params): DataResult<BasicApiResult<${apiName}Response>> {
+    override suspend fun $apiName(param: ${apiName.firstToUpperCase()}Params): DataResult<BasicApiResult<${apiName.firstToUpperCase()}Response>> {
         TODO("Not yet implemented")
     }
 }

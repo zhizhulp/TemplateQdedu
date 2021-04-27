@@ -1,5 +1,6 @@
 package api.src.app_package.data.model.responses
 
+import util.firstToUpperCase
 import java.text.DateFormat
 import java.util.*
 
@@ -17,7 +18,7 @@ import com.squareup.moshi.JsonClass
  * #$remark#
 */
 @JsonClass(generateAdapter=true)
-class ${apiName}Response {
+class ${apiName.firstToUpperCase()}Response {
 
 }
 """
