@@ -6,10 +6,11 @@ import java.util.*
 
 
 fun repositoryKt(
-        remark:String,
+        remark: String,
         apiName: String,
         packageName: String,
-        groupName: String
+        groupName: String,
+        hasCreated: Boolean//是否生成特别的code
 ) = """
 package $packageName.data.source
 
@@ -26,15 +27,10 @@ import $packageName.data.model.responses.*
  * ${groupName}Repository
  */
 class ${groupName}Repository : BaseRepository<${groupName}LocalDataSource,${groupName}RemoteDataSource>(${groupName}LocalDataSource(),${groupName}RemoteDataSource()),${groupName}DataSource {
-
-    companion object{
-        val instance: ${groupName}Repository by lazy {
-            ${groupName}Repository()
-        }
-    }
-    val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-
-     /**
+       
+   ${repositoryHead(hasCreated, groupName)}
+    
+    /**
      * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
      * #$apiName#
      * #$remark#
@@ -44,3 +40,19 @@ class ${groupName}Repository : BaseRepository<${groupName}LocalDataSource,${grou
 }
 
 """
+
+fun repositoryHead(hasCreated: Boolean, groupName: String): String {
+    if (!hasCreated) {
+        return """
+         companion object{
+             val instance: ${groupName}Repository by lazy {
+                ${groupName}Repository()
+             }
+         }
+        
+         val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+         
+        """.trimIndent()
+    }
+    return ""
+}

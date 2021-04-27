@@ -29,7 +29,6 @@ interface ${groupName}DataSource {
      */
     suspend fun ${apiName}( param: ${apiName.firstToUpperCase()}Params): DataResult<BasicApiResult<${apiName.firstToUpperCase()}Response>>
 
-//#06#
 }
 
 """

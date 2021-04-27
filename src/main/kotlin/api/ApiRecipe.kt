@@ -41,7 +41,7 @@ fun RecipeExecutor.apiRecipe(
 
 fun addOrMergeRepository(srcOut: File, remarkName: String, apiName: String, packageName: String, groupName: String, recipeExecutor: RecipeExecutor) {
     val outFile = srcOut.resolve("data/source/${groupName}Repository.kt")
-    val newDataString = repositoryKt(remarkName, apiName, packageName, groupName)
+    val newDataString = repositoryKt(remarkName, apiName, packageName, groupName,outFile.exists())
     if (outFile.exists()) {
         val originString = AttachmentStore.loadAsString(outFile.absolutePath)
         if (originString.contains(apiName) && originString.contains(remarkName)) {//此方法会多次执行
