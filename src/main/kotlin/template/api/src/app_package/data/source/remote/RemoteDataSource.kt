@@ -2,6 +2,7 @@ package template.api.src.app_package.data.source.remote
 
 
 import util.firstToUpperCase
+import util.timeNow
 import java.text.DateFormat
 import java.util.*
 
@@ -23,7 +24,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 /**
- * 自动生成：by WaTaNaBe ${DateFormat.getInstance().format(Date())}.
+ * 自动生成：by WaTaNaBe ${Date().timeNow()}.
  * ${groupName}RemoteDataSource
  */
 public class ${groupName}RemoteDataSource internal constructor(
@@ -31,7 +32,7 @@ public class ${groupName}RemoteDataSource internal constructor(
 ) : BaseRemoteDataSource(), ${groupName}DataSource {
 
      /**
-     * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+     * 自动生成：by WaTaNaBe on ${Date().timeNow()}.
      * #$apiName#
      * #$remark#
      */

@@ -1,6 +1,7 @@
 package template.api.src.app_package.data.model.responses
 
 import util.firstToUpperCase
+import util.timeNow
 import java.text.DateFormat
 import java.util.*
 
@@ -13,7 +14,7 @@ package $packageName.data.model.responses
 import com.squareup.moshi.JsonClass
 
 /**
- * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+ * 自动生成：by WaTaNaBe on ${Date().timeNow()}.
  * $apiName
  * #$remark#
 */

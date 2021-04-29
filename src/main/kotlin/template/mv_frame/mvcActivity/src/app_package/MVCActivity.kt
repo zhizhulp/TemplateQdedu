@@ -27,7 +27,7 @@ fun mvcActivityKt(
     import android.app.Activity
 
      /**
-     * 自动生成：by WaTaNaBe on ${DateFormat.getInstance().format(Date())}.
+     * 自动生成：by WaTaNaBe on ${Date().timeNow()}.
      * #$remark#
      */
     class $className : BActivity(){
