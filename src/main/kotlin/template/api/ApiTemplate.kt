@@ -14,48 +14,42 @@ val apiTemplate
      formFactor = FormFactor.Mobile
      screens = listOf(WizardUiContext.ActivityGallery, WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
 
-     /*val packageName = stringParameter {
-         name = "Root Package Name"
-         default = defaultPackageNameParameter.defaultValue
-         constraints = listOf(Constraint.PACKAGE)
-         help = "请填写你的项目包名,请认真核实此包名是否是正确的项目包名,不能包含子包,正确的格式如:me.jessyan.arms"
-     }*/
+
      val groupName= stringParameter {
-         name = "Group Name"
-         default = "Homework"
-         help = "Group Name"
+         name = "组名"
+         default = ""
+         help = "组名"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
 
      val apiName= stringParameter {
-         name = "Api Name"
-         default = "Main"
-         help = "Api Name"
+         name = "api链接名字，用于生成其他类的前缀"
+         default = ""
+         help = "api链接名字，用于生成其他类的前缀"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
 
      val apiUrl= stringParameter {
-         name = "Api Url"
-         default = "/template/api/user/student"
-         help = "Api Url"
+         name = "请求链接 例如/template/api/user/student"
+         default = ""
+         help = "请求链接"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
 
      val isGetMethod= booleanParameter {
-         name = "isGetMethod"
+         name = "是get请求还是post请求"
          default = false
-         help = "isGetMethod"
+         help = "是get请求还是post请求"
      }
 
      val remarkName= stringParameter {
-         name = "remarkName Name"
+         name = "描述内容"
          default = "description"
-         help = "remarkName Name"
+         help = "描述内容"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
      thumb { File("template_blank_activity.png") }
      widgets(
-             //TextFieldWidget(packageName),
              TextFieldWidget(groupName),
              TextFieldWidget(apiName),
              TextFieldWidget(apiUrl),
@@ -66,7 +60,6 @@ val apiTemplate
      recipe = { data: TemplateData ->
          apiRecipe(
                  data as ModuleTemplateData,
-                // packageName.value,
                  groupName.value,
                  apiName.value,
                  apiUrl.value,
