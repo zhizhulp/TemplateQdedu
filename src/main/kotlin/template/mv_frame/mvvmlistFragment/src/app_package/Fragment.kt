@@ -8,7 +8,7 @@ fun mvvmListFragmentKt(
         remarks:String,
         activityClass:String,
         adapterClass:String,
-        entity:String
+        entity:String?
 ) ="""
 package $packageName.ui.fragment
 

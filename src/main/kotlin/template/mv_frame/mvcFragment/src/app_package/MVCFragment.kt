@@ -4,7 +4,8 @@ fun mvcFragmentKt(
         className: String,
         packageName: String,
         layoutName: String,
-        remark:String
+        remark:String,
+        now:String,
 ) = """
     package $packageName.ui.fragment
 
@@ -21,8 +22,8 @@ fun mvcFragmentKt(
     import kotlinx.android.synthetic.main.$layoutName.*
 
     /**
-     * 自动生成：by WaTaNaBe on {{now}}
-     * #{{remarks}}#
+     * 自动生成：by WaTaNaBe on $now
+     * #$remark#
      */
     class $className : BFragment(){
 

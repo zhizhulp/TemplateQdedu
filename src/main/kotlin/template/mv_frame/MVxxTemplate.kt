@@ -43,7 +43,7 @@ val mvxxTemplate
          visible = {
              mvType.value== MVType.MVPLIST ||  mvType.value== MVType.MVVMLIST
          }
-         name = "列表实体类（可为空）"
+         name = "列表实体类（不填会自动生成，填写Main则生成Main）"
          default = ""
          help = "列表实体类"
      }
@@ -52,7 +52,8 @@ val mvxxTemplate
              TextFieldWidget(prefix),
              TextFieldWidget(remarkName),
              EnumWidget(uiType),
-             EnumWidget(mvType)
+             EnumWidget(mvType),
+             TextFieldWidget(entityName)
      )
 
      recipe = { data: TemplateData ->
