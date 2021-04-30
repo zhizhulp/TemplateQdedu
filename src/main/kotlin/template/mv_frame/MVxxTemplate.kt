@@ -6,13 +6,13 @@ import java.io.File
 val mvxxTemplate
  get() =template{
      revision = 1
-     name = "mvxxTemplate"
+     name = "MVxx架构"
      description = "一键创建 mvxxTemplate 单个页面所需要的全部组件"
      minApi = 9
      minBuildApi = 15
-     category = Category.Other
+     category = Category.Application
      formFactor = FormFactor.Mobile
-     screens = listOf(WizardUiContext.ActivityGallery, WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
+     screens = listOf(WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
 
 
      val prefix= stringParameter {

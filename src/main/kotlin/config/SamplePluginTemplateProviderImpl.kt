@@ -3,6 +3,7 @@ import template.api.apiTemplate
 import com.android.tools.idea.wizard.template.Template
 import com.android.tools.idea.wizard.template.WizardTemplateProvider
 import template.mv_frame.mvxxTemplate
+import template.qdedu_module.qdModuleTemplate
 
 /**
  * description:
@@ -11,8 +12,9 @@ import template.mv_frame.mvxxTemplate
  */
 class SamplePluginTemplateProviderImpl : WizardTemplateProvider(){
     override fun getTemplates(): List<Template> = listOf(
-            // activity的模板
+            // 引用模板名
             apiTemplate,
-            mvxxTemplate
+            mvxxTemplate,
+            qdModuleTemplate
     )
 }

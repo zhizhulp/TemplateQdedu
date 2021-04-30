@@ -11,11 +11,12 @@ fun apiServiceKt(
         remark:String,
         methodIsGet:Boolean
 ) = """
-package $packageName.data.source
+package $packageName.data.service
     
 import com.qdedu.baselibcommon.data.model.responses.BasicApiResult
-import $packageName.data.model.params.${apiName}Params
-import $packageName.data.model.responses.${apiName}Response
+import $packageName.data.model.params.${apiName.firstToUpperCase()}Params
+import $packageName.data.model.responses.${apiName.firstToUpperCase()}Response
+import $packageName.data.service.ApiMethods
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -26,8 +27,8 @@ interface ApiService {
      * #$apiName#
      * #$remark#
      */
-    ${if(methodIsGet) "@GET(ApiMethods.$apiName)" else "@POST(ApiMethods.$apiName)"}
-    suspend fun ${apiName}Async(${if(methodIsGet) "@QueryMap params: Map<String, String>" else "@Body params: ${apiName.firstToUpperCase()}Params"}): Response<BasicApiResult<${apiName.firstToUpperCase()}Response>>
+    ${if(methodIsGet) "@POST(ApiMethods.$apiName)" else "@GET(ApiMethods.$apiName)"}
+    suspend fun ${apiName}Async(${if(methodIsGet) "@Body params: ${apiName.firstToUpperCase()}Params" else "@QueryMap params: Map<String, String>"}): Response<BasicApiResult<${apiName.firstToUpperCase()}Response>>
 
 }
 """

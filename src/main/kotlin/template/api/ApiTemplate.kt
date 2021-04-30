@@ -6,24 +6,24 @@ import java.io.File
 val apiTemplate
  get() =template{
      revision = 1
-     name = "ApiTemplate"
+     name = "AutoApi"
      description = "一键创建 ApiTemplate 单个页面所需要的全部组件"
      minApi = 9
      minBuildApi = 15
-     category = Category.Other
+     category = Category.Application
      formFactor = FormFactor.Mobile
-     screens = listOf(WizardUiContext.ActivityGallery, WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
+     screens = listOf( WizardUiContext.MenuEntry)
 
 
      val groupName= stringParameter {
-         name = "组名"
+         name = "组名 例如 Homework"
          default = ""
          help = "组名"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
      }
 
      val apiName= stringParameter {
-         name = "api链接名字，用于生成其他类的前缀"
+         name = "api链接名字，用于生成其他类的前缀 例如 userInfo"
          default = ""
          help = "api链接名字，用于生成其他类的前缀"
          constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)

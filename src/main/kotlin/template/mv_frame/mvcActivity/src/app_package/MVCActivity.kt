@@ -1,5 +1,6 @@
 package template.mv_frame.mvcActivity.src.app_package
 
+import util.timeNow
 import java.text.DateFormat
 import java.util.*
 
