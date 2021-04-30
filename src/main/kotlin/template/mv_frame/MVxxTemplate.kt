@@ -12,7 +12,7 @@ val mvxxTemplate
      minBuildApi = 15
      category = Category.Application
      formFactor = FormFactor.Mobile
-     screens = listOf(WizardUiContext.MenuEntry, WizardUiContext.NewProject, WizardUiContext.NewModule)
+     screens = listOf(WizardUiContext.MenuEntry)
 
 
      val prefix= stringParameter {
