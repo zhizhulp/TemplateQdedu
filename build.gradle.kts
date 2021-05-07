@@ -81,10 +81,13 @@ tasks {
         jvmTarget = "1.8"
     }
 
-    /*runIde{
-        ideDirectory(properties("ideDirectory"))
-        pluginsDirectory(properties("pluginsDirectory"))
-    }*/
+//    runIde{
+//        ideDirectory(properties("ideDirectory"))
+//        pluginsDirectory(properties("pluginsDirectory"))
+//    }
+    buildSearchableOptions{
+        jbrVersion("jbrx-8u252b1649.5")
+    }
 
     patchPluginXml {
         version(properties("pluginVersion"))
@@ -120,7 +123,7 @@ tasks {
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token(System.getenv("PUBLISH_TOKEN"))
+        token("perm:emhpemh1bHA=.OTItMzg3Ng==.AKdzoBURdHzxaj75LSZbaZx3dIidX9")
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
