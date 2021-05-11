@@ -31,13 +31,22 @@ public class ${groupName}RemoteDataSource internal constructor(
      private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseRemoteDataSource(), ${groupName}DataSource {
 
-     /**
+    /**
      * 自动生成：by WaTaNaBe on ${Date().timeNow()}.
      * #$apiName#
      * #$remark#
      */
-    override suspend fun $apiName(param: ${apiName.firstToUpperCase()}Params): DataResult<BasicApiResult<${apiName.firstToUpperCase()}Response>> {
-        TODO("Not yet implemented")
+    override suspend fun $apiName(param: ${apiName.firstToUpperCase()}Params)= withContext(ioDispatcher) {
+        try {
+            val data = AppService.getApiService(AppHuanJingFactory.appModel.apiDomains).${apiName}Async(param.toNetMap())
+            if(data.isSuccessful) {
+                return@withContext DataResult.Success(data.body()!!).netSuccess()
+            }else{
+                return@withContext DataResult.Error(LibNetWorkException(data.code(),data.message())).netError()
+            }
+        } catch (e: Exception) {
+            return@withContext DataResult.Error(e).netError()
+        }
     }
 }
 
